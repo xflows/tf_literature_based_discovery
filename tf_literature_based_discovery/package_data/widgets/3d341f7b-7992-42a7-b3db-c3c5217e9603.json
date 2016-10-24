@@ -1,0 +1,85 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "d3a0f587-3911-437e-b123-622b6bbc3068", 
+      "treeview_image": "", 
+      "uid": "3d341f7b-7992-42a7-b3db-c3c5217e9603", 
+      "windows_queue": false, 
+      "package": "tf_literature_based_discovery",
+      "interaction_view": "", 
+      "has_progress_bar": false, 
+      "image": "", 
+      "description": "", 
+      "static_image": "crossbee_widget.png", 
+      "action": "lbd_only_terms_from_both_domains", 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "is_streaming": false, 
+      "order": 1, 
+      "name": "Exclude Terms that Appear in One Domain Only"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "3d341f7b-7992-42a7-b3db-c3c5217e9603", 
+      "name": "Bag of Words Model Constructor", 
+      "short_name": "bmc", 
+      "default": "", 
+      "description": "Bag of Words Model Constructor ", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "bow_model_constructor", 
+      "parameter": false, 
+      "order": 1, 
+      "uid": "49e1aad7-6135-4666-a65b-e442821a6ce4"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "3d341f7b-7992-42a7-b3db-c3c5217e9603", 
+      "name": "Annotated Document Corpus", 
+      "short_name": "adc", 
+      "default": "", 
+      "description": "Annotated Document Corpus (workflows.textflows.DocumentCorpus)", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "textarea", 
+      "variable": "adc", 
+      "parameter": false, 
+      "order": 2, 
+      "uid": "90607e77-f713-4c71-b43f-7ba98f16c576"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "3d341f7b-7992-42a7-b3db-c3c5217e9603", 
+      "name": "BOW Model Dataset", 
+      "short_name": "ds", 
+      "description": "Sparse BOW feature vectors.", 
+      "variable": "bow_dataset", 
+      "order": 2, 
+      "uid": "54ff8ba4-b28a-4549-b8fe-661d90e38ee9"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "3d341f7b-7992-42a7-b3db-c3c5217e9603", 
+      "name": "Bag of Words Model Constructor with Filtered Vocabulary", 
+      "short_name": "bmc", 
+      "description": "Bag of Words Model Constructor (BowModelConstructor) gathers utilities to build feature vectors from annotated document corpus.", 
+      "variable": "bow_model_constructor", 
+      "order": 1, 
+      "uid": "ab64c597-c145-410f-a32e-6f6f527c3fd0"
+    }
+  }
+]

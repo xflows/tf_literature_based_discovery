@@ -9,7 +9,7 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name='tf_literature_based_discovery',
-    version='0.0.1',
+    version='0.0.2',
     packages=['tf_literature_based_discovery'],
     include_package_data=True,
     license='MIT License',
@@ -27,7 +27,6 @@ setup(
         'Operating System :: OS Independent',
         'Programming Language :: Python',
         'Programming Language :: Python :: 2',
-        'Programming Language :: Prolog',
         'Topic :: Internet :: WWW/HTTP',
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
         'Topic :: Scientific/Engineering :: Artificial Intelligence',

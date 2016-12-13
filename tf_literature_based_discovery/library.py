@@ -11,7 +11,7 @@ def lbd_select_ensemble_heuristic(input_dict):
 def lbd_select_ensemble_heuristic_post(postdata, input_dict, output_dict):
     widget_id = postdata.get('widget_id')[0]
 
-    from workflows.textflows_dot_net.serialization_utils import ToNetObj
+    from tf_latino.lib.serialization_utils import ToNetObj
     import LatinoInterfaces
     output_dict={}
     output_dict['serialized_adc']=LatinoInterfaces.LatinoCF.Save(ToNetObj(input_dict['adc']))

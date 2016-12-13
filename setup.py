@@ -9,7 +9,7 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name='tf_literature_based_discovery',
-    version='0.0.2',
+    version='0.0.6',
     packages=['tf_literature_based_discovery'],
     include_package_data=True,
     license='MIT License',
@@ -32,4 +32,8 @@ setup(
         'Topic :: Scientific/Engineering :: Artificial Intelligence',
         'Topic :: Software Development :: Libraries'
     ],
+    install_requires=[
+        "tf_core",
+        #"tf_latino", required only for explore in crossbee widget
+    ]
 )

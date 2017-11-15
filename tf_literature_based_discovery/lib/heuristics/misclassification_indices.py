@@ -1,4 +1,4 @@
-from itertools import izip
+
 from sklearn.cross_validation import KFold, StratifiedKFold
 
 from tf_core.nltoolkit.lib.classification import train_classifier,apply_bow_classifier
@@ -26,7 +26,7 @@ class MisclassificationIndices:
             #classifier.fit(train_data,)
             #predictions = classifier.predict(test_data)
 
-            for indice, real_class, prediction in izip(test_indices, test_data.labels, predictions):
+            for indice, real_class, prediction in zip(test_indices, test_data.labels, predictions):
                 #b=prediction.max()
                 if str(real_class) != prediction.max(): #prediction.max returns class as string
                     noisyIndices.append(indice)

@@ -3,10 +3,10 @@
 import copy
 import scipy
 from scipy.sparse import csr_matrix, rand
-from band_matrices import alternatingBi
+from .band_matrices import alternatingBi
 
 # from workflows.textflows import BowDataset
-from memoizator import memoized
+from .memoizator import memoized
 import numpy as np
 __author__ = 'matic'
 #
@@ -100,7 +100,7 @@ class BandedMatrixBasedHeuristicCalculations():
         _,fully_banded,_,column_permutation=self._banded_matrix()
 
         fully_banded_A=fully_banded[idx_A]
-        print fully_banded_A.shape
+        #print(fully_banded_A.shape)
         return np.array(self._reverse_column_permute(fully_banded_A,column_permutation).sum(axis=0))[0]
 
     @memoized
@@ -173,15 +173,15 @@ class BandedMatrixBasedHeuristicCalculations():
         #         tf_idfs[train][word] = tf * idf
         word_to_idx=self._bow_model.vectorizer.vocabulary
 
-        print np.array(self._binary_matrix().sum(axis=0))[0]
+        print(np.array(self._binary_matrix().sum(axis=0))[0])
 
         banded_matrix,fully_banded,row_permutation,column_permutation=self._banded_matrix()
-        print np.array(self._reverse_column_permute(banded_matrix,column_permutation).sum(axis=0))[0]
+        print(np.array(self._reverse_column_permute(banded_matrix,column_permutation).sum(axis=0))[0])
 
 
-        print banded_matrix.shape
-        print fully_banded.shape
-        print np.array(self._reverse_column_permute(fully_banded,column_permutation).sum(axis=0))[0]
+        print(banded_matrix.shape)
+        print(fully_banded.shape)
+        print(np.array(self._reverse_column_permute(fully_banded,column_permutation).sum(axis=0))[0])
 
         #sorted_words = sorted(list(words)) #TODO need to set
         #nums=0
@@ -309,7 +309,7 @@ class BandedMatrixBasedHeuristicCalculations():
         for i in range(len(greens_per_word)):
             if greens_on_diag_per_word[i]!=0 or blues_on_diag_per_word[i]!=0: #if diag has one color per word
                 max_score=max(greens_on_diag_per_word[i], blues_on_diag_per_word[i])
-                print greens_per_word[i] , greens_on_diag_per_word[i],blues_per_word[i],blues_on_diag_per_word[i],max_score
+                print(greens_per_word[i] , greens_on_diag_per_word[i],blues_per_word[i],blues_on_diag_per_word[i],max_score)
 
                 if (greens_per_word[i] if greens_on_diag_per_word[i]==max_score else blues_per_word[i])!=0:
                     score=max_score*1.*(blues_per_word[i] if greens_on_diag_per_word[i]==max_score else greens_per_word[i])/(greens_per_word[i] if greens_on_diag_per_word[i]==max_score else blues_per_word[i])
@@ -333,7 +333,7 @@ class BandedMatrixBasedHeuristicCalculations():
         for i in range(len(greens_per_word)):
             if greens_on_diag_per_word[i]!=0 or blues_on_diag_per_word[i]!=0: #if diag has one color per word
                 max_score=max(greens_on_diag_per_word[i], blues_on_diag_per_word[i])
-                print greens_per_word[i] , greens_on_diag_per_word[i],blues_per_word[i],blues_on_diag_per_word[i],max_score
+                print(greens_per_word[i] , greens_on_diag_per_word[i],blues_per_word[i],blues_on_diag_per_word[i],max_score)
 
                 if (greens_per_word[i] if greens_on_diag_per_word[i]==max_score else blues_per_word[i])!=0:
                     score=max_score*1.*(blues_per_word[i] if greens_on_diag_per_word[i]==max_score else greens_per_word[i])/(greens_per_word[i] if greens_on_diag_per_word[i]==max_score else blues_per_word[i])

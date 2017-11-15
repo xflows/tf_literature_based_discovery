@@ -3,15 +3,15 @@ from scipy.stats import rankdata
 from tf_core.helpers import flatten
 
 
-from memoizator import memoized
+from .memoizator import memoized
 
 
 import numpy as np
-from frequency_heuristics import FrequencyBasedHeuristicCalculations
-from tfidf_heuristics import TfIdfBasedHeuristicCalculations
-from similarity_heuristics import SimilarityBasedHeuristicCalculations
-from outlier_heuristics import OutlierBasedHeuristicCalculations
-from banded_matrix_heuristics import BandedMatrixBasedHeuristicCalculations
+from .frequency_heuristics import FrequencyBasedHeuristicCalculations
+from .tfidf_heuristics import TfIdfBasedHeuristicCalculations
+from .similarity_heuristics import SimilarityBasedHeuristicCalculations
+from .outlier_heuristics import OutlierBasedHeuristicCalculations
+from .banded_matrix_heuristics import BandedMatrixBasedHeuristicCalculations
 
 class HeuristicCalculations(FrequencyBasedHeuristicCalculations,
                             TfIdfBasedHeuristicCalculations,
@@ -80,7 +80,7 @@ class HeuristicCalculations(FrequencyBasedHeuristicCalculations,
 
 
     def calculate_heuristics(self, heuristic_names):
-        if isinstance(heuristic_names, basestring):
+        if isinstance(heuristic_names, str):
             scores=self._penalize_not_appearing_in_all(getattr(self,heuristic_names)())
             #scores=getattr(self,heuristic_names)()
             return BTermHeuristic(heuristic_names,scores)
@@ -153,19 +153,19 @@ class BTermHeuristic:
 
     def votes(self,num_of_terms_in_both_domains):
         positions = self.positions()  #double argsort: position on in the spot of the element
-        print num_of_terms_in_both_domains
-        print self.positions().shape[0]
+        print(num_of_terms_in_both_domains)
+        print(self.positions().shape[0])
         top_terms_ratio=num_of_terms_in_both_domains/(3.*self.positions().shape[0])
-        print top_terms_ratio
+        print(top_terms_ratio)
         #return np.array(positions >= positions[int(len(positions) * 2 / 3.0)-1],dtype=int)
         #a=np.percentile(positions, 200./3)
         #non_zero_scores=np.array(self.scores>0,dtype=int)
-        print 100*(1-top_terms_ratio)
-        print self.positions().shape[0]*(1-top_terms_ratio)
-        print int(self.positions().shape[0]*(1-top_terms_ratio))
+        print(100*(1-top_terms_ratio))
+        print(self.positions().shape[0]*(1-top_terms_ratio))
+        print(int(self.positions().shape[0]*(1-top_terms_ratio)))
 
-        print "dfd"
-        print np.percentile(positions, 100*(1-top_terms_ratio))
+        print("dfd")
+        print(np.percentile(positions, 100*(1-top_terms_ratio)))
         #return np.array(positions >= np.percentile(positions, 100*(1-top_terms_ratio)),dtype=int)#*non_zero_scores
         return np.array(positions >= int(self.positions().shape[0]*(1-top_terms_ratio)),dtype=int)#*non_zero_scores
 

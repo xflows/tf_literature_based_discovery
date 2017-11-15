@@ -43,11 +43,11 @@ def identity_permutation(n):
 
 def get_permutations(prefix,filename="init.dat"):
         #-----------------CREATE BANDED BINARY MATRIX-----------------
-    print "creating banded binary matrix aaa"
+    print("creating banded binary matrix aaa")
     old_path=os.getcwd()
     os.chdir(prefix)
     #print os.getcwd(),('C:\Users\matic\workspace\diagonalization/' if os.getenv('COMPUTERNAME')=="PORFAVOR-PC" else "./")+"diag 1 34 1 11 < "+filename
-    os.system(('C:\Users\matic\workspace\diagonalization/' if os.getenv('COMPUTERNAME')=="PORFAVOR-PC" else "./")+"diag 1 34 1 11 < "+filename)
+    os.system(('C:\\Users\matic\workspace\diagonalization/' if os.getenv('COMPUTERNAME')=="PORFAVOR-PC" else "./")+"diag 1 34 1 11 < "+filename)
     os.chdir(old_path)
 
     col_perm_rev={} #permutation of columns      #{0: 151 } na nictem mestu je 151. beseda
@@ -62,7 +62,7 @@ def get_permutations(prefix,filename="init.dat"):
         if new_col!="":
             col_perm_rev[i]=int(new_col)
 
-    print "col_perm:",col_perm_rev
+    print("col_perm:",col_perm_rev)
     column_ordering_file.close()
 
     #ROW ORDERING
@@ -78,7 +78,7 @@ def get_permutations(prefix,filename="init.dat"):
             #print i,spl[0]
             i+=1
         line = row_ordering_file.readline()
-    print "row_perm:",row_perm_rev
+    print("row_perm:",row_perm_rev)
     row_ordering_file.close()
 
     return col_perm_rev,row_perm_rev

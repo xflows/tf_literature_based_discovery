@@ -4,9 +4,9 @@ from tf_core.bow_dataset import BowDataset
 
 __author__ = 'matic'
 
-from memoizator import memoized
+from .memoizator import memoized
 import numpy as np
-from misclassification_indices import MisclassificationIndices
+from .misclassification_indices import MisclassificationIndices
 
 ###OUTLIER BASED HEURISITCS
 from sklearn.neighbors import  NearestCentroid

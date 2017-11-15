@@ -58,7 +58,7 @@ def MBAStep(matrix, nRows, nCols):
                     if candidate[1] - candidate[0] < best[1] - best[0]:
                         best = candidate
         final.append(best)
-    return sorted(range(len(final)), key=lambda _i: final[_i])
+    return sorted(list(range(len(final))), key=lambda _i: final[_i])
 
 
 def BiMBAStep(matrix, nRows, nCols):
@@ -102,7 +102,7 @@ def BiMBAStep(matrix, nRows, nCols):
                     break
         final.append([a, b])
 
-    perm=sorted(range(nRows), key=lambda i: final[i])
+    perm=sorted(list(range(nRows)), key=lambda i: final[i])
 
 
     fully_banded_intervals=[final[i] for i in perm]
@@ -114,15 +114,15 @@ def BiMBAStep(matrix, nRows, nCols):
 
 
 def alternating(matrix, steps):
-    rowper = range(matrix.shape[0])
-    colper = range(matrix.shape[1])
+    rowper = list(range(matrix.shape[0]))
+    colper = list(range(matrix.shape[1]))
     stateDict = {False: rowper, True: colper}
     state = False
     for i in range(steps):
         # print "step %i" % i
         newPerm,fully_banded_intervals = MBAStep(matrix, matrix.shape[0], matrix.shape[1])
-        if newPerm == range(len(stateDict[state])):
-            print "optimal permutation achieved at i = %i" % i
+        if newPerm == list(range(len(stateDict[state]))):
+            print("optimal permutation achieved at i = %i" % i)
             break
         stateDict[state] = [stateDict[state][x] for x in newPerm]
         newmatrix = matrix[newPerm, :] #apliciranje perm
@@ -136,7 +136,7 @@ def alternating(matrix, steps):
 
     for i,interval in enumerate(fully_banded_intervals):
         a,b=interval
-        interval_sequence=range(a,b)
+        interval_sequence=list(range(a,b))
         col_ind.extend(interval_sequence)
         row_ind.extend([i for _ in interval_sequence])
         data.extend([1 for _ in interval_sequence])
@@ -155,12 +155,12 @@ def alternating(matrix, steps):
 
 
 def alternatingBi(matrix, steps):
-    rowper = range(matrix.shape[0])
-    colper = range(matrix.shape[1])
+    rowper = list(range(matrix.shape[0]))
+    colper = list(range(matrix.shape[1]))
     stateDict = {False: rowper, True: colper}
     state = False
     for i in range(steps):
-        print "step %i" % i
+        print("step %i" % i)
         newPerm,fully_banded_intervals = BiMBAStep(matrix, matrix.shape[0], matrix.shape[1])
 
         stateDict[state] = [stateDict[state][x] for x in newPerm]
@@ -169,8 +169,8 @@ def alternatingBi(matrix, steps):
         matrix = newmatrix.transpose().tocsr()
         state = not state
 
-        if newPerm == range(len(stateDict[not state])):
-            print "optimal permutation achieved at i = %i" % i
+        if newPerm == list(range(len(stateDict[not state]))):
+            print("optimal permutation achieved at i = %i" % i)
             break
 
 
@@ -181,7 +181,7 @@ def alternatingBi(matrix, steps):
 
     for i,interval in enumerate(fully_banded_intervals):
         a,b=interval
-        interval_sequence=range(a,b)
+        interval_sequence=list(range(a,b))
         col_ind.extend(interval_sequence)
         row_ind.extend([i for _ in interval_sequence])
         data.extend([1 for _ in interval_sequence])
@@ -201,8 +201,8 @@ def baryCentric(mat, steps, clusters=None):
     ones1 = np.ones(mat.shape[0])
     range0 = np.arange(mat.shape[1])
     range1 = np.arange(mat.shape[0])
-    rowper = range(mat.shape[0])
-    colper = range(mat.shape[1])
+    rowper = list(range(mat.shape[0]))
+    colper = list(range(mat.shape[1]))
 
     stateDict = {False: [ones0, range0, rowper], True: [ones1, range1, colper]}
     state = False  # tells if matrix is transposed
@@ -212,14 +212,14 @@ def baryCentric(mat, steps, clusters=None):
         baryCenters = num / (den + 0.00001)
 
         if (clusters is None) or (not state):
-            permutation = sorted(range(baryCenters.shape[0]), key=lambda i: [baryCenters[i], den[i]])
+            permutation = sorted(list(range(baryCenters.shape[0])), key=lambda i: [baryCenters[i], den[i]])
         else:
-            permutation = sorted(range(baryCenters.shape[0]),
+            permutation = sorted(list(range(baryCenters.shape[0])),
                                  key=lambda i: [baryCenters[i], den[i], clusters[stateDict[state][2][i]]])
         # multiply stateDict[state][2] with permutation (from left)
         stateDict[state][2] = [stateDict[state][2][x] for x in permutation]
-        if permutation == range(baryCenters.shape[0]):
-            print "barycenters alined at i = %i" % i
+        if permutation == list(range(baryCenters.shape[0])):
+            print("barycenters alined at i = %i" % i)
             break
         mat = mat[permutation, :].transpose()
         state = not state
@@ -294,9 +294,9 @@ if __name__=='__main__':
 
     banded_matrix,c,row_permutation,column_permutation= alternatingBi(a,1)
 
-    print np.array(a.sum(axis=0))[0]
+    print(np.array(a.sum(axis=0))[0])
 
     reversed_column_permutations=np.argsort(column_permutation)
-    print np.array(banded_matrix[:,reversed_column_permutations].sum(axis=0))[0]
+    print(np.array(banded_matrix[:,reversed_column_permutations].sum(axis=0))[0])
 
 

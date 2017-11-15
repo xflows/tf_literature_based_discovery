@@ -1,6 +1,6 @@
 __author__ = 'matic'
 
-from memoizator import memoized
+from .memoizator import memoized
 import numpy as np
 
 class TfIdfBasedHeuristicCalculations():

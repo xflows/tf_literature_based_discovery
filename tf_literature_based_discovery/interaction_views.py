@@ -1,9 +1,9 @@
 from django.shortcuts import render
-from lib.heuristics.frequency_heuristics import FrequencyBasedHeuristicCalculations
-from lib.heuristics.tfidf_heuristics import TfIdfBasedHeuristicCalculations
-from lib.heuristics.outlier_heuristics import OutlierBasedHeuristicCalculations
-from lib.heuristics.similarity_heuristics import SimilarityBasedHeuristicCalculations
-from lib.heuristics.banded_matrix_heuristics import BandedMatrixBasedHeuristicCalculations
+from .lib.heuristics.frequency_heuristics import FrequencyBasedHeuristicCalculations
+from .lib.heuristics.tfidf_heuristics import TfIdfBasedHeuristicCalculations
+from .lib.heuristics.outlier_heuristics import OutlierBasedHeuristicCalculations
+from .lib.heuristics.similarity_heuristics import SimilarityBasedHeuristicCalculations
+from .lib.heuristics.banded_matrix_heuristics import BandedMatrixBasedHeuristicCalculations
 from tf_core.helpers import flatten
 
 

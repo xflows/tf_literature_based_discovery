@@ -1,7 +1,7 @@
 __author__ = 'matic'
 
 import numpy as np
-from heuristic_calculations import HeuristicCalculations
+from .heuristic_calculations import HeuristicCalculations
 
 raw_documents = [
     "The sky is blue and bright",
@@ -16,10 +16,10 @@ classes = np.array([0, 0, 0, 1, 1])
 
 
 calcs=HeuristicCalculations(raw_documents,classes)
-print calcs._calculate_all()
+print(calcs._calculate_all())
 
-from frequency_heuristics import FrequencyBasedHeuristicCalculations
+from .frequency_heuristics import FrequencyBasedHeuristicCalculations
 
-print FrequencyBasedHeuristicCalculations.random.__doc__
-print FrequencyBasedHeuristicCalculations.freq_domn_prod.__doc__
+print(FrequencyBasedHeuristicCalculations.random.__doc__)
+print(FrequencyBasedHeuristicCalculations.freq_domn_prod.__doc__)
 #print calcs

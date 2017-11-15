@@ -1,6 +1,6 @@
 __author__ = 'matic'
 
-from memoizator import memoized
+from .memoizator import memoized
 #from sklearn.neighbors.nearest_centroid import NearestCentroid
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity

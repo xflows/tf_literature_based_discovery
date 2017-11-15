@@ -39,12 +39,12 @@ class memoized(object):
             cache = obj.__cache
         except AttributeError:
             cache = obj.__cache = {}
-        key = (self.func, args[1:], frozenset(kw.items()))
+        key = (self.func, args[1:], frozenset(list(kw.items())))
         try:
             res = cache[key]
-            print 'Cached:',self.func.__name__
+            print('Cached:',self.func.__name__)
         except KeyError:
             res = cache[key] = self.func(*args, **kw)
-            print 'Calculated:',self.func.__name__
+            print('Calculated:',self.func.__name__)
 
         return res

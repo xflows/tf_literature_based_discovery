@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 
 def lbd_explore_in_crossbee(request,input_dict,output_dict,widget):
-    from urlparse import urlparse
+    from urllib.parse import urlparse
     parsed_uri = urlparse(request.META.get('HTTP_REFERER'))
     domain = '{uri.scheme}://{uri.netloc}/'.format(uri=parsed_uri)
     json_widget_url=domain+"api/widgets/" + str(widget.id) + ".json"
